@@ -3,3 +3,4 @@ mod longest_palindromic_substring;
 mod longest_substring;
 mod median_of_two_sorted_array;
 mod two_sum;
+mod zigzag;
