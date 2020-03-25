@@ -3,6 +3,7 @@ mod longest_palindromic_substring;
 mod longest_substring;
 mod median_of_two_sorted_array;
 mod palindrome_number;
+mod regex_matching;
 mod reverse_integer;
 mod string_to_integer;
 mod two_sum;
