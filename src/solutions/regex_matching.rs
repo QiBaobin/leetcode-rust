@@ -1,86 +1,112 @@
 /// https://leetcode.com/problems/regular-expression-matching/
-pub struct Solution;
-
-#[derive(Debug)]
-enum Occurrences {
-    Any,
-    Once,
+#[derive(Debug, Clone)]
+struct Occurs {
+    least: usize,
+    most: Option<usize>,
 }
-#[derive(Debug)]
-struct Char(char);
-impl Char {
-    fn is_match(self: &Self, c: char) -> bool {
-        self.0 == '.' || self.0 == c
-    }
+#[derive(Debug, Clone)]
+struct CharState {
+    c: char,
+    occurs: Occurs,
 }
-#[derive(Debug)]
-struct Matcher(Char, Occurrences);
-impl Matcher {
-    fn new(c: char, o: Occurrences) -> Self {
-        Matcher(Char(c), o)
+impl CharState {
+    fn is_char_match(self: &Self, c: char) -> bool {
+        self.c == '.' || self.c == c
     }
-    fn compile(s: &str) -> Vec<Matcher> {
-        let mut v = Vec::with_capacity(s.len());
-        let mut unhandled = None;
-        for c in s.chars() {
-            match (unhandled, c) {
-                (Some(o), '*') => {
-                    v.push(Self::new(o, Occurrences::Any));
-                    unhandled = None;
+    fn process<'a>(self: &Self, s: &'a str) -> Option<Vec<&'a str>> {
+        let mut chars = s.chars();
+        let mut i = 0;
+        for _ in 0..self.occurs.least {
+            if let Some(ch) = chars.next() {
+                if self.is_char_match(ch) {
+                    i += 1;
+                    continue;
                 }
-                (Some(o), _) => {
-                    v.push(Self::new(o, Occurrences::Once));
-                    unhandled = Some(c);
+            }
+            return None;
+        }
+
+        let end = self.occurs.most.unwrap_or(usize::max_value());
+
+        let mut options = vec![chars.as_str()];
+        while i < end {
+            if chars
+                .next()
+                .map(|ch| !self.is_char_match(ch))
+                .unwrap_or(true)
+            {
+                break;
+            }
+            i += 1;
+            options.push(chars.as_str());
+        }
+
+        options.reverse();
+        Some(options)
+    }
+}
+#[derive(Debug, Clone)]
+enum State {
+    Finished,
+    Char { cs: CharState, next: Box<State> },
+}
+impl State {
+    fn compile(regex: &str) -> Self {
+        let mut stack: Vec<_> = regex.chars().collect();
+        let mut current = Box::new(State::Finished);
+        let temp = &mut CharState {
+            c: '.',
+            occurs: Occurs {
+                least: 0,
+                most: Some(0),
+            },
+        };
+
+        while !stack.is_empty() {
+            let mut c = stack.pop().unwrap();
+            if c == '*' {
+                c = stack.pop().unwrap();
+                temp.occurs.least = 0;
+                temp.occurs.most = None;
+            } else {
+                temp.occurs.least = 1;
+                temp.occurs.most = Some(1);
+            }
+            temp.c = c;
+
+            let cur = current.as_mut();
+            match cur {
+                State::Char { cs, .. } if cs.c == c => {
+                    cs.occurs.least += temp.occurs.least;
+                    let new_most = temp.occurs.most;
+                    cs.occurs.most = cs.occurs.most.and_then(|o| new_most.map(|no| o + no));
                 }
                 _ => {
-                    unhandled = Some(c);
+                    current = Box::new(State::Char {
+                        cs: temp.clone(),
+                        next: current,
+                    });
                 }
             }
         }
-        if let Some(c) = unhandled {
-            v.push(Self::new(c, Occurrences::Once));
+        *current
+    }
+
+    fn is_match(self: &Self, s: &str) -> bool {
+        match self {
+            Self::Finished => s.is_empty(),
+            Self::Char { cs, next } => cs
+                .process(s)
+                .map(|options| options.into_iter().any(|next_str| next.is_match(next_str)))
+                .unwrap_or(false),
         }
-        v
     }
 }
+pub struct Solution;
+
 impl Solution {
     pub fn is_match(s: String, p: String) -> bool {
-        let chars = s.chars().collect::<Vec<_>>();
-        let m = Matcher::compile(p.as_str());
-
-        Self::is_match_with(&chars[..], &m[..])
-    }
-
-    fn is_match_with(s: &[char], p: &[Matcher]) -> bool {
-        let mut i = 0;
-        let mut j = 0;
-        while i < p.len() && j < s.len() {
-            let c_i = &p[i].0;
-            match p[i].1 {
-                Occurrences::Once if j >= s.len() || !c_i.is_match(s[j]) => {
-                    return false;
-                }
-                Occurrences::Once => {
-                    j += 1;
-                    i += 1;
-                }
-                Occurrences::Any if Self::is_match_with(&s[j..], &p[i + 1..]) => {
-                    return true;
-                }
-                Occurrences::Any if !c_i.is_match(s[j]) => {
-                    return false;
-                }
-                Occurrences::Any => {
-                    j += 1;
-                }
-            }
-        }
-
-        j == s.len()
-            && p[i..].iter().all(|m| match m.1 {
-                Occurrences::Any => true,
-                _ => false,
-            })
+        State::compile(p.as_str()).is_match(s.as_str())
     }
 }
 
@@ -127,6 +153,14 @@ mod tests {
                 "aaaaaaaaaaaaab".to_string(),
                 "a*a*a*a*a*a*a*a*a*a*a*a*b".to_string()
             )
+        );
+    }
+
+    #[test]
+    fn test_7() {
+        assert_eq!(
+            true,
+            Solution::is_match("aaa".to_string(), "ab*a*c*a".to_string())
         );
     }
 }
