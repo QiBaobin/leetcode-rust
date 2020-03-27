@@ -15,7 +15,7 @@ impl Solution {
         let mut i = 0;
         while i < end {
             let n = 0 - nums[i];
-            let mut j = 1;
+            let mut j = i + 1;
             let mut k = nums.len() - 1;
 
             while j < k {
@@ -26,10 +26,10 @@ impl Solution {
                         Self::advance(&nums, &mut k, j, false);
                     }
                     Greater => {
-                        Self::advance(&nums, &mut j, k, true);
+                        Self::advance(&nums, &mut k, j, false);
                     }
                     _ => {
-                        Self::advance(&nums, &mut k, j, false);
+                        Self::advance(&nums, &mut j, k, true);
                     }
                 }
             }
@@ -68,11 +68,17 @@ mod tests {
             Solution::three_sum(vec![-1, 0, 1, 2, -1, -4])
         );
     }
+
     #[test]
     fn test_3() {
+        assert!(Solution::three_sum(vec![1, 2, -1, -2]).is_empty());
+    }
+
+    #[test]
+    fn test_4() {
         assert_eq!(
-            vec![vec![-1, -1, 2]],
-            Solution::three_sum(vec![1, 2, -1, -2])
+            vec![vec![-1, 0, 1]],
+            Solution::three_sum(vec![-1, 1, 0, -1])
         );
     }
 }
