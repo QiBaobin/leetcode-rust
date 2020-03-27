@@ -7,6 +7,7 @@ pub mod median_of_two_sorted_array;
 pub mod palindrome_number;
 pub mod regex_matching;
 pub mod reverse_integer;
+pub mod roman_to_int;
 pub mod string_to_integer;
 pub mod two_sum;
 pub mod zigzag;
