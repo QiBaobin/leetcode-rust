@@ -10,5 +10,6 @@ pub mod regex_matching;
 pub mod reverse_integer;
 pub mod roman_to_int;
 pub mod string_to_integer;
+pub mod three_sum;
 pub mod two_sum;
 pub mod zigzag;
