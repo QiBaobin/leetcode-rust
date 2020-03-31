@@ -1,6 +1,7 @@
 pub mod add_two_numbers;
 pub mod container_with_most_water;
 pub mod integer_to_roman;
+pub mod letter_combinations;
 pub mod longest_common_prefix;
 pub mod longest_palindromic_substring;
 pub mod longest_substring;
