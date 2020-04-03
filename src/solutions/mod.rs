@@ -8,6 +8,7 @@ pub mod longest_substring;
 pub mod median_of_two_sorted_array;
 pub mod palindrome_number;
 pub mod regex_matching;
+pub mod remove_nth_from_end;
 pub mod reverse_integer;
 pub mod roman_to_int;
 pub mod string_to_integer;
