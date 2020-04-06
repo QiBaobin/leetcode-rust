@@ -7,6 +7,7 @@ pub mod longest_common_prefix;
 pub mod longest_palindromic_substring;
 pub mod longest_substring;
 pub mod median_of_two_sorted_array;
+pub mod merge_k_lists;
 pub mod merge_two_sorted_list;
 pub mod palindrome_number;
 pub mod regex_matching;
