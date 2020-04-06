@@ -1,5 +1,6 @@
 pub mod add_two_numbers;
 pub mod container_with_most_water;
+pub mod generate_parentheses;
 pub mod integer_to_roman;
 pub mod letter_combinations;
 pub mod longest_common_prefix;
