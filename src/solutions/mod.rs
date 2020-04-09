@@ -11,6 +11,7 @@ pub mod merge_k_lists;
 pub mod merge_two_sorted_list;
 pub mod palindrome_number;
 pub mod regex_matching;
+pub mod remove_duplicates_from_sorted;
 pub mod remove_nth_from_end;
 pub mod reverse_integer;
 pub mod reverse_k_group;
