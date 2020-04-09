@@ -13,6 +13,7 @@ pub mod palindrome_number;
 pub mod regex_matching;
 pub mod remove_nth_from_end;
 pub mod reverse_integer;
+pub mod reverse_k_group;
 pub mod roman_to_int;
 pub mod string_to_integer;
 pub mod swap_pairs;
