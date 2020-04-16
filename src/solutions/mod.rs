@@ -19,5 +19,6 @@ pub mod roman_to_int;
 pub mod string_to_integer;
 pub mod swap_pairs;
 pub mod three_sum;
+pub mod three_sum_closest;
 pub mod two_sum;
 pub mod zigzag;
