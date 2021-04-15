@@ -1,3 +1,5 @@
+#![allow(warnings)]
+
 pub mod add_two_numbers;
 pub mod container_with_most_water;
 pub mod four_sum;
@@ -13,6 +15,7 @@ pub mod merge_two_sorted_list;
 pub mod palindrome_number;
 pub mod regex_matching;
 pub mod remove_duplicates_from_sorted;
+pub mod remove_element;
 pub mod remove_nth_from_end;
 pub mod reverse_integer;
 pub mod reverse_k_group;
