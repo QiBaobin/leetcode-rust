@@ -22,4 +22,5 @@ pub mod swap_pairs;
 pub mod three_sum;
 pub mod three_sum_closest;
 pub mod two_sum;
+pub mod valid_parenthese;
 pub mod zigzag;
