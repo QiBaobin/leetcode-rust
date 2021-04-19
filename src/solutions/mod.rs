@@ -4,6 +4,7 @@ pub mod add_two_numbers;
 pub mod container_with_most_water;
 pub mod divide;
 pub mod four_sum;
+pub mod find_substring;
 pub mod generate_parentheses;
 pub mod integer_to_roman;
 pub mod letter_combinations;
