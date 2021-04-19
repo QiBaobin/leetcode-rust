@@ -13,7 +13,7 @@ impl Solution {
 
             let mut map = std::collections::HashMap::with_capacity(c);
             for w in words {
-                let entry = map.entry(w).or_insert((s.len(), 0, 0));
+                let entry = map.entry(w).or_insert((s.len(), 0, 0)); // (see_from_index, seen, total)
                 *entry = (entry.0, entry.1, entry.2 + 1);
             }
             'outer: for i in 0..s.len() - n * c + 1 {
