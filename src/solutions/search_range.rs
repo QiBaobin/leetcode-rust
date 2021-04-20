@@ -15,7 +15,7 @@ impl Solution {
                         }
                     })
                     .map_or_else(|e| e, |o| o + 1) as i32,
-                (nums
+                nums[i + 1..]
                     .binary_search_by(|&n| {
                         if n > target {
                             Ordering::Greater
@@ -23,8 +23,7 @@ impl Solution {
                             Ordering::Less
                         }
                     })
-                    .map_or_else(|e| e, |o| o)
-                    - 1) as i32,
+                    .map_or_else(|e| e + i, |o| o) as i32,
             ]
         } else {
             vec![-1, -1]
