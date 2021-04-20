@@ -25,6 +25,7 @@ pub mod reverse_integer;
 pub mod reverse_k_group;
 pub mod roman_to_int;
 pub mod search;
+pub mod search_range;
 pub mod string_to_integer;
 pub mod str_str;
 pub mod swap_pairs;
