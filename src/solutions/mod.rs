@@ -11,6 +11,7 @@ pub mod letter_combinations;
 pub mod longest_common_prefix;
 pub mod longest_palindromic_substring;
 pub mod longest_substring;
+pub mod longest_valid_parentheses;
 pub mod median_of_two_sorted_array;
 pub mod merge_k_lists;
 pub mod merge_two_sorted_list;
