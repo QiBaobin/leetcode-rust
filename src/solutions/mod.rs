@@ -28,6 +28,7 @@ pub mod roman_to_int;
 pub mod search;
 pub mod search_insert;
 pub mod search_range;
+pub mod solve_sudoku;
 pub mod string_to_integer;
 pub mod str_str;
 pub mod swap_pairs;
