@@ -6,6 +6,7 @@ pub mod combination_sum2;
 pub mod container_with_most_water;
 pub mod count_and_say;
 pub mod divide;
+pub mod first_missing_positive;
 pub mod four_sum;
 pub mod find_substring;
 pub mod generate_parentheses;
