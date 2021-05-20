@@ -13,6 +13,7 @@ pub mod generate_parentheses;
 pub mod integer_to_roman;
 pub mod is_match;
 pub mod is_valid_sudoku;
+pub mod jump;
 pub mod letter_combinations;
 pub mod longest_common_prefix;
 pub mod longest_palindromic_substring;
