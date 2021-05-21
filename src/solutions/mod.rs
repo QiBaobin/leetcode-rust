@@ -25,6 +25,8 @@ pub mod merge_two_sorted_list;
 pub mod multiply;
 pub mod next_permutation;
 pub mod palindrome_number;
+pub mod permute;
+pub mod permute_unique;
 pub mod regex_matching;
 pub mod remove_duplicates_from_sorted;
 pub mod remove_element;
