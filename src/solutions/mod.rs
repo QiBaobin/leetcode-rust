@@ -10,6 +10,7 @@ pub mod first_missing_positive;
 pub mod four_sum;
 pub mod find_substring;
 pub mod generate_parentheses;
+pub mod group_anagrams;
 pub mod integer_to_roman;
 pub mod is_match;
 pub mod is_valid_sudoku;
