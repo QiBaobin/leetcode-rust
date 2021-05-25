@@ -24,6 +24,7 @@ pub mod median_of_two_sorted_array;
 pub mod merge_k_lists;
 pub mod merge_two_sorted_list;
 pub mod multiply;
+pub mod my_pow;
 pub mod next_permutation;
 pub mod palindrome_number;
 pub mod permute;
